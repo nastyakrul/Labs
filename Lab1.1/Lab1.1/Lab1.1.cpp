@@ -4,11 +4,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
+#include <locale.h>
+
 
 int main()
 {
-    system("chcp 1251"); // переходим в консоли на русский язык
-    system("cls");       // очищаем окно консоли
+    setlocale(LC_ALL, "Russian"); //установка русского языка
     /*int d;
     int a;
     printf("Введите первое число: ");
@@ -19,8 +20,13 @@ int main()
     int c;
     printf("Введите третье число: ");
     scanf_s("%d", &c);
+    if (c !=0)
+    {
     d = a+b/c*++b-c;
-    printf("Резльтат программы: %d", d);*/
+    printf("Резльтат программы: %d\n", d);
+    }
+    else printf("Значение выражения нельзя вычислить, так как делить на ноль нельзя \n");
+    */
     int a;
     printf("Введите первое число: ");
     scanf_s("%d", &a);
@@ -29,10 +35,13 @@ int main()
     printf("Введите второе число: ");
     scanf_s("%lf", &b);
     int e;
-    c = a * b;                                      
-    e = (int)c / (double)a; 
-    printf("Значение выражения: %d", e);
-    printf("\n");
+    c = a * b;  
+    if (a !=0)
+    {
+        e = (int)c / (double)a;
+        printf("Значение выражения: %d\n", e);
+    }
+    else printf("Значение выражения нельзя вычислить, так как делить на ноль нельзя \n"); 
     system("pause");
     return 0;
    
