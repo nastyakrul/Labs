@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <locale.h>
+#include <math.h>
 
 int main()
 {
