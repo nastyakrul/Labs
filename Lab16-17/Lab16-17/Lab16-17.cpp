@@ -5,30 +5,28 @@
 #include <stdlib.h>
 #include <locale.h>
 
-void fastsort(int* a, int first, int last)
+void fastsort(int* a, int b, int e) 
 {
-    if (first < last) // тк программа работает через рекурсия, то создаем новый метод, для ссылки не на массив,
-                     //а на его имя, оставшиеся две перменные - номера первого и последнего элементов в массиве
+    if (b < e) 
     {
-        int left = first, right = last; // чтобы идти от самого левого и самого правого элементов относительно нашего опорного
-        int op = a[(first + last) / 2]; // запоминаем номер опорного элемента
-        do
+        int c, l = b, r = e, piv = a[(b + e) / 2];
+        for (; l <= r;) 
         {
-            while (a[left] < op) // пока значение левого относительного опорного элемента, меньше значения опорного, увеличиваем номер левого элемента
-                left++;
-            while (a[right] > op) // все с точность до наоборот, как для левого
-                right--;
-            if (left <= right) // если номер левого меньше или равен номеру правого, то переприсваиваем
+            for (l; piv > a[l];)
+                l++;
+            for (r; piv < a[r];)
+                r--;
+            if (l <= r) 
             {
-                int t = a[left];
-                a[left] = a[right];
-                a[right] = t;
-                left++;
-                right--;
+                c = a[l];
+                a[l] = a[r];
+                a[r] = c;
+                l++;
+                r--;
             }
-        } while (left <= right); // пока номер левого меньше или равен номеру правого, делаем все, что выше, а после вызываем ещё 2 такие же программы
-        fastsort(a, first, right);
-        fastsort(a, left, last);
+        }
+        fastsort(a, l, e);
+        fastsort(a, b, r);
     }
 }
 
